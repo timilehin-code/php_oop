@@ -8,6 +8,12 @@
 </head>
 
 <body>
+    <?php
+        include 'includes/visiblity.php';
+        $pet = new pet;
+        echo $pet->owner(); 
+        echo $pet->petname();
+    ?>
 
 </body>
 

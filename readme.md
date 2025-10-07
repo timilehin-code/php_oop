@@ -13,20 +13,35 @@ The few concept i have learnt so far are:
 - **Methods**: they are functions inside a class.
 
 - **Objects** : they are a refrence to class.
- ```php
- 
-    <?php
 
-        class NewClass{//this how to create a clas
-           public $words = "hello world"; // is a property
+```php
 
+   <?php
 
-        }
-        $object = new NewClass; // this is an object which is the instance or refrence of a class
-
-    ?>
-
- 
- ```
+       class NewClass{//this how to create a clas
+          public $words = "hello world"; // is a property
 
 
+       }
+       $object = new NewClass; // this is an object which is the instance or refrence of a class
+
+   ?>
+```
+
+# Day 2:
+
+## Visiblity:
+
+Anytime you want to create a new property in a class you should always declear its visibity, else you will get an error, but for methods it is not neccessary but it is good practice to always declear a visibity if method visbity isn't decleared, it automatically sees it as public.
+
+- **Private:** private properties or methods can not be accessed outside the class in which it was created.
+
+- **Public:** Public properties or methods can be accessed within and outside of a class in which it was created.
+
+- **Protected:** Protected properties or methods can be accessed only in within class and sub-classes of the class in which it was created from
+
+the `$this` is use to refrence a property inside a class or a sub-class
+
+```
+
+```
