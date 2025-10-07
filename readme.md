@@ -30,7 +30,7 @@ The few concept i have learnt so far are:
 
 # Day 2:
 
-## Visiblity:
+## Visiblity and Inheritance:
 
 Anytime you want to create a new property in a class you should always declear its visibity, else you will get an error, but for methods it is not neccessary but it is good practice to always declear a visibity if method visbity isn't decleared, it automatically sees it as public.
 
@@ -40,8 +40,39 @@ Anytime you want to create a new property in a class you should always declear i
 
 - **Protected:** Protected properties or methods can be accessed only in within class and sub-classes of the class in which it was created from
 
-the `$this` is use to refrence a property inside a class or a sub-class
+the `$this` keyword is use to refrence a property inside a class or a sub-class
 
-```
+- **Inheritance:** it when another class is able to access the properties and method of another class for a class to inherit another class you need to use the `extends` keyword
+  _note:_ only protected and public methods or properties can be inherited.
 
+```php
+   <?php
+class person
+{
+    protected $first = "Oluwatimilehin";
+    protected $last = "Tawose";
+
+    protected $age = 20;
+}
+
+
+class pet extends person
+{
+    private $animal = "dog";
+    private $name = "kai";
+    public function owner()
+    {
+        $a = $this->first ." " . $this->last;
+
+        return $a;
+    }
+
+    function petname()
+    {
+        $a = "<br>" . $this->owner() . "'s " . $this->animal."'s name " . " is " . $this->name;
+
+        return $a;
+    }
+}
+?>
 ```
