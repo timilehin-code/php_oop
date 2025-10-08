@@ -9,10 +9,25 @@
 
 <body>
     <?php
-        include 'includes/visiblity.php';
-        $pet = new pet;
-        echo $pet->owner(); 
-        echo $pet->petname();
+    include 'includes/visiblity.php';
+    include 'includes/conn.php';
+    $person = new Person("Daniel", "Red", "20");
+    $person->getName();
+    // var_dump($person);
+    echo $person->name;
+
+    try {
+        $db = new Connection("localhost", "root", "", "delivery");
+        $conn = $db->getConnect();
+        if ($conn) {
+            echo "Connection to db was successful";
+        } else {
+            echo "Connection is null";
+        }
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
+
     ?>
 
 </body>
