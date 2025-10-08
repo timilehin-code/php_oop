@@ -20,7 +20,7 @@ class Connection
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     }
 
-    public function setConnect()
+    private function setConnect()
     {
         try {
             $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);

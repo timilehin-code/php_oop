@@ -4,7 +4,7 @@ HI, I am Oluwatimilehin, I am trying to understand the concept of `oop` in `PHP`
 
 The few concept i have learnt so far are:
 
-# Day 1:
+# Lesson 1:
 
 - **classes** : class is a big object that contains a lot of diffrent information about something e.g variables and functions which are called propreties and method
 
@@ -28,7 +28,7 @@ The few concept i have learnt so far are:
    ?>
 ```
 
-# Day 2:
+# Lesson 2:
 
 ## Visiblity and Inheritance:
 
@@ -72,6 +72,48 @@ class pet extends person
         $a = "<br>" . $this->owner() . "'s " . $this->animal."'s name " . " is " . $this->name;
 
         return $a;
+    }
+}
+?>
+```
+
+# Lesson 3:
+
+## Constructors and Destructors:
+
+**Constructor:** is a special method in php that triggers when the object of a class is created the `__construct()` keyword is used for creating a constructor method, also it is used to initialize the object properties.
+
+**Destructors:** is a special method used when the obeject is destroyed or the script is ended, it is always used at the end of a class. the `__destruct()` keyword is used for creating a destructor method, also it is used to do most of the clean up after the object has served it purpose
+
+```php
+
+<?php
+class Person
+{
+    public $name;
+    public $eyecolor;
+    public $age;
+
+
+    public function __construct($name, $eyecolor, $age)
+    {//this is a Constructors method
+        $this->name = $name;
+        $this->eyecolor = $eyecolor;
+        $this->age = $age;
+    }
+
+    public function setName(string $name = "user")
+    {
+        $this->name = $name . "</br>";
+    }
+
+    public function getName()
+    {
+        return  $this->name;
+    }
+
+    public function __destruct() {
+        // this is a destructor method
     }
 }
 ?>

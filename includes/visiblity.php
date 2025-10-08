@@ -1,28 +1,27 @@
 <?php
-class person
+class Person
 {
-    protected $first = "Oluwatimilehin";
-    protected $last = "Tawose";
-
-    protected $age = 20;
-}
+    public $name;
+    public $eyecolor;
+    public $age;
 
 
-class pet extends person
-{
-    private $animal = "dog";
-    private $name = "kai";
-    public function owner()
+    public function __construct($name, $eyecolor, $age)
     {
-        $a = $this->first ." " . $this->last;
-
-        return $a;
+        $this->name = $name;
+        $this->eyecolor = $eyecolor;
+        $this->age = $age;
     }
 
-    function petname()
+    public function setName(string $name = "user")
     {
-        $a = "<br>" . $this->owner() . "'s " . $this->animal."'s name " . " is " . $this->name;
-
-        return $a;
+        $this->name = $name . "</br>";
     }
+
+    public function getName()
+    {
+        return  $this->name;
+    }
+
+    public function __destruct() {}
 }
