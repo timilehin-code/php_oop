@@ -118,3 +118,16 @@ class Person
 }
 ?>
 ```
+
+# Lesson 4:
+
+## Deleting of an object:
+
+Deleting an object in Object-Oriented Programming (OOP) refers to the process of removing an object from memory and making its resources available for other uses,
+the `unset()` function is used to delete an object or instance of a class
+
+```php
+    $object = new NewClass();
+    unset($object); // line 2 unset the object and makes line 3 invalid or null.  
+    echo $object->getNewProperty();
+```

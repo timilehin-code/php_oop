@@ -11,14 +11,15 @@
     <?php
     include 'includes/visiblity.php';
     include 'includes/conn.php';
-    $person = new Person("Daniel", "Red", "20");
+    include 'includes/newclass.php';
+    $person = new Person("Daniel", "Red", 20);
     $person->getName();
     // var_dump($person);
     echo $person->name;
 
     try {
         $db = new Connection("localhost", "root", "", "delivery");
-        $conn = $db->getConnect();
+        $conn = $db->setConnect();
         if ($conn) {
             echo "Connection to db was successful";
         } else {
@@ -27,7 +28,9 @@
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
-
+    $object = new NewClass();
+    unset($object);
+    // echo $object->getNewProperty();
     ?>
 
 </body>

@@ -1,10 +1,25 @@
 <?php
 
-class Newclass {// this is how to create a class using the keyword "class" then the name of your class
-    // properties and method goes here
-    public $info = "this is some info"; //this is a property which are variables inside a class
-    public  $a = $this->info;
+class NewClass
+{
+    public $data = "I am a property";
+    public function __construct()
+    {
+        echo "This class as being instantiated <br>";
+    }
+
+    public function setNewProperty($newData)
+    {
+        $this->data = $newData;
+    }
+
+    public function getNewProperty()
+    {
+        return  $this->data;
+    }
+
+    public function __destruct()
+    {
+        echo "<br> this is end of the class";
+    }
 }
-  
-$object = new Newclass; // this is an object which is the instance or refrence of  a class
-var_dump($object);
