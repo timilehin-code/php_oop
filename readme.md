@@ -1,4 +1,4 @@
-## PHP OBJECT ORIENTED PROGRAMING (OOP)
+## PHP OBJECT ORIENTED PROGRAMMING (OOP)
 
 HI, I am Oluwatimilehin, I am trying to understand the concept of `oop` in `PHP`
 
@@ -152,5 +152,4 @@ to reference a static method or property, and we use the `self` and `::` to acce
   myClass::$Pi; // how to reference a static property.
   myClass::pi(3.5); // how to reference a static method.
 ?>
-
 ```
