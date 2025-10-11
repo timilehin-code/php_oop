@@ -128,6 +128,28 @@ the `unset()` function is used to delete an object or instance of a class
 
 ```php
     $object = new NewClass();
-    unset($object); // line 2 unset the object and makes line 3 invalid or null.  
+    unset($object); // line 2 unset the object and makes line 3 invalid or null.
     echo $object->getNewProperty();
+```
+
+# Lesson 5:
+
+## Static Properties and Methods:
+
+Static Properties and Methods are methods and properties that can be accessed without having to create an object or instance of a class we use the `static` keyword to recognize a method or property as static and to access it we use `::`
+to reference a static method or property
+
+```php
+<?php
+ class myClass{
+    public static $pi = 3.14; // this is a static property
+
+    public static function pi($newPi){ //this is a static method
+        self::$pi = $newPi;
+    }
+ }
+  myClass::$Pi; // how to reference a static property.
+  myClass::pi(3.5); // how to reference a static method.
+?>
+
 ```

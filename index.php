@@ -9,28 +9,11 @@
 
 <body>
     <?php
-    include 'includes/visiblity.php';
-    include 'includes/conn.php';
-    include 'includes/newclass.php';
-    $person = new Person("Daniel", "Red", 20);
-    $person->getName();
-    // var_dump($person);
-    echo $person->name;
+    include 'includes/StaticPropertiesMethod.php';
+    // echo StaticPropertiesMethod::$drinkingAge;
+    echo StaticPropertiesMethod::SetDrinkingAge(20);
+    echo StaticPropertiesMethod::$drinkingAge;
 
-    try {
-        $db = new Connection("localhost", "root", "", "delivery");
-        $conn = $db->setConnect();
-        if ($conn) {
-            echo "Connection to db was successful";
-        } else {
-            echo "Connection is null";
-        }
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    $object = new NewClass();
-    unset($object);
-    // echo $object->getNewProperty();
     ?>
 
 </body>
