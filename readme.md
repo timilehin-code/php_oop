@@ -6,13 +6,13 @@ The few concept i have learnt so far are:
 
 # Lesson 1:
 
-- **classes** : class is a big object that contains a lot of diffrent information about something e.g variables and functions which are called propreties and method
+- **classes** : class is a big object that contains a lot of different information about something e.g variables and functions which are called properties and method
 
-- **properies**: they are variables inside a class.
+- **properties**: they are variables inside a class.
 
 - **Methods**: they are functions inside a class.
 
-- **Objects** : they are a refrence to class.
+- **Objects** : they are a reference to class.
 
 ```php
 
@@ -30,9 +30,9 @@ The few concept i have learnt so far are:
 
 # Lesson 2:
 
-## Visiblity and Inheritance:
+## Visibility and Inheritance:
 
-Anytime you want to create a new property in a class you should always declear its visibity, else you will get an error, but for methods it is not neccessary but it is good practice to always declear a visibity if method visbity isn't decleared, it automatically sees it as public.
+Anytime you want to create a new property in a class you should always declear its Visibility, else you will get an error, but for methods it is not necessary but it is good practice to always declear a Visibility if method Visibility isn't declared, it automatically sees it as public.
 
 - **Private:** private properties or methods can not be accessed outside the class in which it was created.
 
@@ -40,7 +40,7 @@ Anytime you want to create a new property in a class you should always declear i
 
 - **Protected:** Protected properties or methods can be accessed only in within class and sub-classes of the class in which it was created from
 
-the `$this` keyword is use to refrence a property inside a class or a sub-class
+the `$this` keyword is use to reference a property inside a class or a sub-class
 
 - **Inheritance:** it when another class is able to access the properties and method of another class for a class to inherit another class you need to use the `extends` keyword
   _note:_ only protected and public methods or properties can be inherited.
@@ -83,7 +83,7 @@ class pet extends person
 
 **Constructor:** is a special method in php that triggers when the object of a class is created the `__construct()` keyword is used for creating a constructor method, also it is used to initialize the object properties.
 
-**Destructors:** is a special method used when the obeject is destroyed or the script is ended, it is always used at the end of a class. the `__destruct()` keyword is used for creating a destructor method, also it is used to do most of the clean up after the object has served it purpose
+**Destructors:** is a special method used when the object is destroyed or the script is ended, it is always used at the end of a class. the `__destruct()` keyword is used for creating a destructor method, also it is used to do most of the clean up after the object has served it purpose
 
 ```php
 
@@ -145,11 +145,38 @@ to reference a static method or property, and we use the `self` and `::` to acce
     public static $pi = 3.14; // this is a static property
 
     public static function pi($newPi){ //this is a static method
-        self::$pi = $newPi; // how to reference a property inside a class. 
+        self::$pi = $newPi; // how to reference a property inside a class.
     }
 
  }
   myClass::$Pi; // how to reference a static property.
   myClass::pi(3.5); // how to reference a static method.
 ?>
+```
+
+# Lesson 6:
+
+## Automatic Loading of classes and Namespaces:
+
+we use the php `spl_autoload_register()` function to auto load files in php easily without having to include so many files to the files we are working on.
+A namespace in PHP is a way to encapsulate items such as classes, functions, and constants to avoid naming conflicts and organize code, especially in large applications or when using third-party libraries. Think of it as a container that allows you to group related code under a unique name, similar to how directories organize files in a filesystem.
+
+```php
+<?php
+spl_autoload_register("myAutoLoader"); // to auto load classes with the function name "myAutoLoader";
+function myAutoLoader($className) //autoloader function
+{
+    $path = "classes/"; // file part
+    $extension = ".php"; // file extension
+    $fullPathName = $path . $className . $extension; //concatenating of the file directory and extensions together.
+    try {
+        if (!file_exists($fullPathName)) { // error handling if file does not exist
+            throw new Exception("invalid class or file Name");
+        }
+        include_once $fullPathName;
+        return $fullPathName;
+    } catch (ErrorException  $th) {
+        echo $th->getMessage();
+    }
+}
 ```

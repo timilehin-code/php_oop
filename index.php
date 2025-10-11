@@ -9,8 +9,7 @@
 
 <body>
     <?php
-    include 'includes/StaticPropertiesMethod.php';
-    // echo StaticPropertiesMethod::$drinkingAge;
+    include 'includes/autoloader.php';
     echo StaticPropertiesMethod::SetDrinkingAge(20);
     echo StaticPropertiesMethod::$drinkingAge;
 
