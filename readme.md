@@ -18,7 +18,7 @@ The few concept i have learnt so far are:
 
    <?php
 
-       class NewClass{//this how to create a clas
+       class NewClass{//this how to create a class
           public $words = "hello world"; // is a property
 
 

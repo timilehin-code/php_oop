@@ -10,6 +10,11 @@
 <body>
     <?php
     include 'includes/autoloader.php';
+    $files = glob("classes");
+    foreach($files as $file ){
+        $content = file_get_contents($file);
+        echo $content;
+    }
     echo StaticPropertiesMethod::SetDrinkingAge(20);
     echo StaticPropertiesMethod::$drinkingAge;
 

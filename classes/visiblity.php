@@ -1,27 +1,21 @@
 <?php
-class Person
+class visibility
 {
     public $name;
-    public $eyecolor;
     public $age;
+    private $sex;
 
-
-    public function __construct($name, $eyecolor, $age)
+    public function sex($sex)
     {
-        $this->name = $name;
-        $this->eyecolor = $eyecolor;
-        $this->age = $age;
+        $sum = 2 + 2;
+        echo $sum;
+        return $this->sex = $sex;
+        
     }
-
-    public function setName(string $name = "user")
-    {
-        $this->name = $name . "</br>";
-    }
-
-    public function getName()
-    {
-        return  $this->name;
-    }
-
-    public function __destruct() {}
 }
+
+$visibility = new  visibility();
+
+echo $visibility->name = "timi online";
+echo $visibility->age = 20;
+echo $visibility->sex("male");
