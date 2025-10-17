@@ -10,14 +10,13 @@
 <body>
     <?php
     include 'includes/autoloader.php';
-    $files = glob("classes");
-    foreach($files as $file ){
-        $content = file_get_contents($file);
-        echo $content;
+    $obj = new StaticPropertiesMethod();
+    try {
+      $obj->setName("1");
+      echo $obj->getName();
+    } catch (Throwable $th) {
+        echo $th->getMessage();
     }
-    echo StaticPropertiesMethod::SetDrinkingAge(20);
-    echo StaticPropertiesMethod::$drinkingAge;
-
     ?>
 
 </body>

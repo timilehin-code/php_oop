@@ -180,3 +180,33 @@ function myAutoLoader($className) //autoloader function
     }
 }
 ```
+
+# Lesson 7:
+
+## Type Declaration Or Type Hinting:
+
+We use type declaration to make sure that the user passes in the right type of data inside a function or method the list of type we have in PHP are:
+
+- int
+- Float
+- string
+- bool
+- array
+- callable
+- object
+- null
+- resource
+
+```php
+<?php
+    declare(strict_types = 1); // used to enable strict mode in php nd also ensure the type declaration rule is enforced.
+    class myClass{
+
+        public function add(int $x, int $y){
+            return x +y;
+        }
+    }
+    $obj = new myClass();
+    $obj->add(2,4) // the two parameters passed as to be integer data type for the function to work, if not it will throw a type error.
+?>
+```

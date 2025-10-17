@@ -1,4 +1,5 @@
 <?php
+// declare(strict_types = 1);
 class StaticPropertiesMethod
 {
     private $name;
@@ -8,14 +9,14 @@ class StaticPropertiesMethod
 
     public static $drinkingAge = 18;
 
-    public function __construct($name, $eyeColor, $age)
-    { //this is a Constructors method
-        $this->name = $name;
-        $this->eyeColor = $eyeColor;
-        $this->age = $age;
-    }
+    // public function __construct($name, $eyeColor, $age)
+    // { //this is a Constructors method
+    //     $this->name = $name;
+    //     $this->eyeColor = $eyeColor;
+    //     $this->age = $age;
+    // }
 
-    public function setName(string $name = "user")
+    public function setName(int $name = 2)
     {
         $this->name = $name . "</br>";
     }
