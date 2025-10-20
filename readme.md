@@ -210,11 +210,12 @@ We use type declaration to make sure that the user passes in the right type of d
     $obj->add(2,4) // the two parameters passed as to be integer data type for the function to work, if not it will throw a type error.
 ?>
 ```
+
 # Lesson 8:
 
 ## Scope Resolution Operator:
 
-the scope resolution operator  which is `::` is an operator that is used to access static methods, properties, and also constants in php
+the scope resolution operator which is `::` is an operator that is used to access static methods, properties, and also constants in php
 
 ```php
 <?php
@@ -243,7 +244,71 @@ echo Secondclass::test2();
 
 ?>
 ```
->[!NOTE]
-> the "parent" key word is used to access constant inside a subclass like in 
-> the example showing above, but the scope resolution operator makes it accessible outside a `class.` 
 
+> [!NOTE]
+> the "parent" key word is used to access constant inside a subclass like in
+> the example showing above, but the scope resolution operator makes it accessible outside a `class.`
+
+# Lesson 9:
+
+## Interfaces:
+
+Interface is like a blueprint used when creating a class, it can also be seen as a set of rules a class must follow when it is been created and an interface can only contain methods and the methods visibility must be public
+
+```php
+<?php
+
+// Define an interface
+interface Logger
+{
+    public function logMessage(string $message);
+    public function logError(string $errorMessage);
+}
+
+// Implement the interface in a class
+class FileLogger implements Logger
+{
+    public function logMessage(string $message)
+    {
+        // Logic to write message to a file
+        echo "Logging message to file: " . $message . PHP_EOL;
+    }
+
+    public function logError(string $errorMessage)
+    {
+        // Logic to write error to a file
+        echo "Logging error to file: " . $errorMessage . PHP_EOL;
+    }
+}
+
+// Another class implementing the same interface
+class DatabaseLogger implements Logger
+{
+    public function logMessage(string $message)
+    {
+        // Logic to store message in a database
+        echo "Storing message in database: " . $message . PHP_EOL;
+    }
+
+    public function logError(string $errorMessage)
+    {
+        // Logic to store error in a database
+        echo "Storing error in database: " . $errorMessage . PHP_EOL;
+    }
+}
+
+// Usage
+$fileLogger = new FileLogger();
+$fileLogger->logMessage("This is a test message.");
+$fileLogger->logError("An error occurred!");
+
+$databaseLogger = new DatabaseLogger();
+$databaseLogger->logMessage("Another message for the database.");
+$databaseLogger->logError("Database error!");
+
+```
+
+> [!IMPORTANT]
+> You have to use the "**implement**" in your class keyword to be able to
+> use an interface in a class
+> also interfaces cannot contain properties or constants
