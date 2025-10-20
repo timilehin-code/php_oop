@@ -210,3 +210,38 @@ We use type declaration to make sure that the user passes in the right type of d
     $obj->add(2,4) // the two parameters passed as to be integer data type for the function to work, if not it will throw a type error.
 ?>
 ```
+# Lesson 8:
+
+## Scope Resolution Operator:
+
+the scope resolution operator  which is `::` is an operator that is used to access static methods, properties, and also constants in php
+
+```php
+<?php
+     class Firstclass{
+    const EXAMPLE = "DOES NOT CHANGE"; // this is a constant
+
+    public static function test(){
+        $testing = "This is a test";
+        return $testing;
+    }
+ }
+
+ echo Firstclass::EXAMPLE; // echoing the value of the constant using the scope resolution operator
+
+class Secondclass extends Firstclass
+{
+    public static $property = "Static Property";
+
+    public static function test2() {
+        echo parent::EXAMPLE; //  I used the parent key word to access the the constant from the parent class in this subclass
+        echo self::$property;
+    }
+}
+
+echo Secondclass::test2();
+
+?>
+[!warning]
+> the "parent" key word is used to access constant inside a subclass like in 
+> the example showing above, but the scope resolution operator makes it accessible outside a `class.`     
