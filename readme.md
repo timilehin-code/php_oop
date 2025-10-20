@@ -243,6 +243,6 @@ echo Secondclass::test2();
 
 ?>
 ```
-[!warning]
+[! warning]
 > the "parent" key word is used to access constant inside a subclass like in 
 > the example showing above, but the scope resolution operator makes it accessible outside a `class.`     
