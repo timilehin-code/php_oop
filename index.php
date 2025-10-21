@@ -12,7 +12,10 @@ include 'includes/autoloader.php';
 <!-- differences between PDO and MYSQLI -->
 
 <body>
-
+    <?php
+    $selectUsers = new Test();
+    $selectUsers->setUsersStmt("Emanuel", "20", "male");
+    ?>
 
 </body>
 
