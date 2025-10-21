@@ -344,3 +344,21 @@ echo $buyProduct->getPayment(); // method
 > Abstract method defined in the parent abstract class must be implemented by subclasses  
 > Abstract properties where introduced in php 8.1 and must also be implemented by subclasses
 > Abstract classes can also have regular methods and properties and does not necessarily need to be implemented in subclasses.
+
+# Lesson 11:
+
+## Anonymous Classes:
+
+An anonymous class is a class that is created and used once, it works just like a regular class which can have normal methods and properties and can also implement interfaces just like regular classes, just that it can only be use for a one time purpose. it is created by using the `new` and `class` keyword.
+
+```php
+<?php
+
+$AnonymousClass = new class(){ // an anonymous class
+    public function greet(){
+        return "Hello world";
+    }
+};
+
+echo $AnonymousClass->greet(); //instantiating the method inside the anonymous class.
+```
