@@ -23,7 +23,7 @@ The few concept i have learnt so far are:
 
 
        }
-       $object = new NewClass; // this is an object which is the instance or refrence of a class
+       $object = new NewClass; // this is an object which is the instance or reference of a class
 
    ?>
 ```
@@ -312,3 +312,35 @@ $databaseLogger->logError("Database error!");
 > You have to use the "**implement**" in your class keyword to be able to
 > use an interface in a class
 > also interfaces cannot contain properties or constants
+
+# Lesson 10:
+
+## Abstract Classes:
+
+Abstract classes are classes that can only be used in another class, meaning it can not be instantiated directly unless it extends to another class. Also, it can have abstract methods and any class that contains abstract method must be declared abstract
+
+```php
+<?php
+
+ abstract class visa{ // An abstract class
+    public function visaPayment(){
+        return "perform a payment";
+    }
+
+    abstract public function getPayment(); // an abstract method
+}
+
+class BuyProduct extends visa{ // Sub class of the abstract class
+    public function getPayment(){
+        return $this->visaPayment();
+    }
+}
+
+$buyProduct = new BuyProduct(); // object
+echo $buyProduct->getPayment(); // method
+```
+
+> [!NOTE]
+> Abstract method defined in the parent abstract class must be implemented by subclasses  
+> Abstract properties where introduced in php 8.1 and must also be implemented by subclasses
+> Abstract classes can also have regular methods and properties and does not necessarily need to be implemented in subclasses.
