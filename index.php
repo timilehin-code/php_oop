@@ -13,8 +13,12 @@ include 'includes/autoloader.php';
 
 <body>
     <?php
-    $selectUsers = new Test();
-    $selectUsers->setUsersStmt("Emanuel", "20", "male");
+    $selectUsers = new UsersView();
+    $selectUsers->showUser("Emanuel");
+
+
+    $insertUsers = new UserController();
+    $insertUsers->setUsers("kola", 17, "male");
     ?>
 
 </body>

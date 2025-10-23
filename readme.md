@@ -362,3 +362,28 @@ $AnonymousClass = new class(){ // an anonymous class
 
 echo $AnonymousClass->greet(); //instantiating the method inside the anonymous class.
 ```
+
+# Lesson 12:
+
+## Model view controller (MVC):
+
+MVC is a software architectural pattern used in PHP that separates an application logic into 3 interconnected components:
+
+- 1 **Model :** it handle data logic e.g (database connections);
+
+- 2 **View :** it handles the presentation of data using (HTML, CSS and Js).
+
+- 3 **Controller :** it creates connection between the view and the model by handling user request and sending it to the views for presentation
+
+# A simple file MVC structure
+
+```bash
+my-app/
+├── index.php      # Main file
+├── controllers/   # 1 file
+│   └── user.php
+├── models/        # 1 file
+│   └── user.php
+└── views/         # 1 file
+    └── user.php
+```
