@@ -13,13 +13,16 @@ include 'includes/autoloader.php';
 
 <body>
     <?php
-    $selectUsers = new UsersView();
-    $selectUsers->showUser("Emanuel");
+    // $selectUsers = new UsersView();
+    // $selectUsers->showUser("Emanuel");
 
 
     $insertUsers = new UserController();
-    $insertUsers->setUsers("kola", 17, "male");
+    $insertUsers->setUsers("kola");
+    
+
     ?>
+
 
 </body>
 

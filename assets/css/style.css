@@ -36,7 +36,12 @@ form {
   width: 100%;
   border: none;
 }
-.msg{
-    text-align: center;
-    color: #b42e2e;
+.msg {
+  text-align: center;
+  color: #b42e2e;
+}
+
+.session {
+  text-align: center;
+  color: #b42e2e;
 }

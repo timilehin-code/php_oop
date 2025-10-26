@@ -1,3 +1,9 @@
+<?php
+// include '';
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -11,9 +17,17 @@
 </head>
 
 <body>
-    <form action="" class="form">
+    <form action="includes/login.php" class="form" method="post">
         <div class="wrapper">
             <p class="msg"></p>
+            <?php
+            if (isset($_SESSION['error'])) {
+            ?>
+                <p class="session"> <?php echo $_SESSION['error']; ?> </p>
+            <?php
+            }
+            unset($_SESSION['error']);
+            ?>
             <input type="email" class="input mail" name="mail" placeholder="Email">
             <input type="password" class="input pwd" name="pwd" placeholder="Password">
             <button type="submit" class="login" name="login">Login</button>

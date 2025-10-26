@@ -3,9 +3,9 @@
 class UserController extends Users
 {
 
-    public function  createUser($name, $age, $sex)
+    public function  createUser($name)
     {
-        $insert =    $this->setUsers($name, $age, $sex);
+        $insert =    $this->setUsers($name);
 
         if ($insert) {
             echo "inserted" . $name . "successfully";

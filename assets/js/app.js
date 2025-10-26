@@ -64,7 +64,20 @@ function loginValidation() {
   });
 }
 
+function sessionMsg() {
+  const msg = document.querySelector(".session");
+  if (msg) {
+    console.log("success message is available.");
+    setTimeout(() => {
+      msg.remove();
+    }, 3000);
+  } else {
+    console.warn("no session message available yet.");
+  }
+}
+
 window.addEventListener("load", () => {
   regValidation();
   loginValidation();
+  sessionMsg();
 });
