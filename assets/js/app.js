@@ -76,8 +76,28 @@ function sessionMsg() {
   }
 }
 
+function submitOtp() {
+  const otp = document.querySelector(".otp");
+  const form = document.querySelector(".form");
+  const verify = document.querySelector(".verify");
+
+  if (!otp || !form || !verify) {
+    console.warn("One or more elements not found: .otp, .form, .verify");
+    return;
+  }
+
+  otp.addEventListener("input", () => {
+    if (otp.value.length == 4) {
+      form.submit();
+      verify.textContent = "verifying....";
+      otp.readOnly = true;
+    }
+  });
+}
+
 window.addEventListener("load", () => {
   regValidation();
   loginValidation();
   sessionMsg();
+  submitOtp();
 });

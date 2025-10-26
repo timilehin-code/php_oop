@@ -17,9 +17,9 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 </head>
 
 <body>
-    <form action="includes/mail.php" class="form" method="post">
+    <form action="includes/register.php" class="form" method="POST">
         <div class="wrapper">
-            <p class="msg"> </p>
+            <p class="msg"></p>
             <?php
             if (isset($_SESSION['error'])) {
             ?>
@@ -28,12 +28,9 @@ if (session_status() != PHP_SESSION_ACTIVE) {
             }
             unset($_SESSION['error']);
             ?>
-            <input type="text" class="input uname" name="uname" placeholder="user name">
-            <input type="password" class="input pwd" name="pwd" placeholder="password">
-            <input type="email" class="input mail" name="mail" placeholder="email">
-            <button type="submit" class="Register" name="reg">Register</button>
+            <input type="number" class="input otp" name="otp" placeholder="Enter your OTP">
+            <button type="submit" class="verify" name="verify">verify</button>
         </div>
-
     </form>
     <script src="assets/js/app.js" async defer></script>
 </body>

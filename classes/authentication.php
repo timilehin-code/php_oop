@@ -45,6 +45,7 @@ class Authentication
             }
             $prepare->execute([$this->userEmail]);
             if ($prepare->rowCount() == 0) {
+
                 return true;
             } else {
                 $_SESSION["error"] = "Email already taken";
@@ -57,13 +58,16 @@ class Authentication
             return false;
         }
     }
-
-    private function setInsertUser()
+    public function getCheckEmail()
     {
-        if (!$this->checkEmail()) {
-            error_log("InsertUser failed: checkEmail returned false");
+        $result = $this->checkEmail();
+        if (!$result) {
             return false;
         }
+        return $result;
+    }
+    private function setInsertUser()
+    {
         try {
             $this->conn->beginTransaction();
             $stmt = "INSERT INTO users (userName, userEmail, userPassword) VALUES (?, ?, ?)";
