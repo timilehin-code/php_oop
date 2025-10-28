@@ -7,6 +7,7 @@ class Authentication
     private $userPassword;
     public $userEmail;
 
+    
     private $conn;
 
     public function __construct($conn,  string $password,  string $userEmail, $userName = null)

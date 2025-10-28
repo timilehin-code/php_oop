@@ -41,7 +41,7 @@ if (isset($_GET['code'])) {
         $client->setAccessToken($token['access_token']);
         $oauth = new Google\Service\Oauth2($client);
         $userInfo = $oauth->userinfo->get();
-
+        
         $_SESSION['login'] = true;
         $_SESSION['email'] = $userInfo->email;
         $_SESSION['userName'] = $userInfo->name;
