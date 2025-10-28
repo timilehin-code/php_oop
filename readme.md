@@ -482,7 +482,7 @@ User → Controller → Model ↔ Database
 5. **Design Patterns** – Factory, Singleton, Repository
 
 ---
-## projects done with oop
+## Projects done with oop
 [OOP Projects](https://github.com/timilehin-code/php_oop/tree/projects)
 
 ## Author

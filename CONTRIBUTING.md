@@ -80,10 +80,6 @@ Open an **Issue** with the label `question` or ask in the Discussions tab.
 **Happy coding!**
 
 
-## 2. Add a **Contributing Section** to your `README.md`
-
-Just **paste this block** at the **end** of your current `README.md` (right before the final note):
-
 
 
 
@@ -92,6 +88,3 @@ Just **paste this block** at the **end** of your current `README.md` (right befo
 **Oluwatimilehin Tawose**  
 *PHP Developer | Learning OOP*  
 
-
-
-Let me know when you push it — I’ll star it!
