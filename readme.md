@@ -482,6 +482,7 @@ User → Controller → Model ↔ Database
 5. **Design Patterns** – Factory, Singleton, Repository
 
 ---
+## projects done with oop
 [OOP Projects](https://github.com/timilehin-code/php_oop/tree/projects)
 
 ## Author
@@ -509,9 +510,4 @@ Every contribution counts – from a typo fix to a brand-new lesson!
 <a href="./CONTRIBUTING.md">
   <img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg" alt="Contributions Welcome">
 </a>
-
----
-```
-
----
 
