@@ -1,364 +1,513 @@
-## PHP OBJECT ORIENTED PROGRAMMING (OOP)
 
-HI, I am Oluwatimilehin, I am trying to understand the concept of `oop` in `PHP`
-
-The few concept i have learnt so far are:
-
-# Lesson 1:
-
-- **classes** : class is a big object that contains a lot of different information about something e.g variables and functions which are called properties and method
-
-- **properties**: they are variables inside a class.
-
-- **Methods**: they are functions inside a class.
-
-- **Objects** : they are a reference to class.
-
-```php
-
-   <?php
-
-       class NewClass{//this how to create a class
-          public $words = "hello world"; // is a property
+# **PHP Object-Oriented Programming (OOP) – Complete Guide**  
+*By Oluwatimilehin Tawose*  
 
 
-       }
-       $object = new NewClass; // this is an object which is the instance or reference of a class
 
-   ?>
-```
+## Table of Contents
+1. [Classes, Objects, Properties & Methods](#lesson-1)
+2. [Visibility & Inheritance](#lesson-2)
+3. [Constructors & Destructors](#lesson-3)
+4. [Deleting Objects (`unset`)](#lesson-4)
+5. [Static Properties & Methods](#lesson-5)
+6. [Autoloading & Namespaces](#lesson-6)
+7. [Type Declarations (Type Hinting)](#lesson-7)
+8. [Scope Resolution Operator (`::`)](#lesson-8)
+9. [Interfaces](#lesson-9)
+10. [Abstract Classes](#lesson-10)
+11. [Anonymous Classes](#lesson-11)
+12. [Model-View-Controller (MVC)](#lesson-12)
 
-# Lesson 2:
 
-## Visibility and Inheritance:
 
-Anytime you want to create a new property in a class you should always declear its Visibility, else you will get an error, but for methods it is not necessary but it is good practice to always declear a Visibility if method Visibility isn't declared, it automatically sees it as public.
+<a name="lesson-1"></a>
+# Lesson 1: Classes, Objects, Properties & Methods
 
-- **Private:** private properties or methods can not be accessed outside the class in which it was created.
+> *Class is a big object that contains a lot of different information about something e.g variables and functions which are called properties and method. Objects are a reference to class.*
 
-- **Public:** Public properties or methods can be accessed within and outside of a class in which it was created.
-
-- **Protected:** Protected properties or methods can be accessed only in within class and sub-classes of the class in which it was created from
-
-the `$this` keyword is use to reference a property inside a class or a sub-class
-
-- **Inheritance:** it when another class is able to access the properties and method of another class for a class to inherit another class you need to use the `extends` keyword
-  _note:_ only protected and public methods or properties can be inherited.
+**Class** – A blueprint for creating objects.  
+**Object** – An instance of a class.  
+**Properties** – Variables inside a class.  
+**Methods** – Functions inside a class.
 
 ```php
-   <?php
-class person
+<?php
+class NewClass 
 {
-    protected $first = "Oluwatimilehin";
-    protected $last = "Tawose";
-
-    protected $age = 20;
+    public $words = "hello world"; // property
 }
 
-
-class pet extends person
-{
-    private $animal = "dog";
-    private $name = "kai";
-    public function owner()
-    {
-        $a = $this->first ." " . $this->last;
-
-        return $a;
-    }
-
-    function petname()
-    {
-        $a = "<br>" . $this->owner() . "'s " . $this->animal."'s name " . " is " . $this->name;
-
-        return $a;
-    }
-}
+$object = new NewClass(); // object = instance of class
+echo $object->words; // hello world
 ?>
 ```
 
-# Lesson 3:
+> **Best Practice**:  
+> - Class names → `PascalCase`  
+> - Properties/methods → `camelCase`
 
-## Constructors and Destructors:
 
-**Constructor:** is a special method in php that triggers when the object of a class is created the `__construct()` keyword is used for creating a constructor method, also it is used to initialize the object properties.
+> *A **class** is like a **recipe for jollof rice** — it tells you the ingredients and steps.  
+> An **object** is the actual plate of jollof you cook and eat!*
 
-**Destructors:** is a special method used when the object is destroyed or the script is ended, it is always used at the end of a class. the `__destruct()` keyword is used for creating a destructor method, also it is used to do most of the clean up after the object has served it purpose
+---
+
+<a name="lesson-2"></a>
+# Lesson 2: Visibility & Inheritance
+ 
+> *Anytime you want to create a new property in a class you should always declare its visibility, because it is best practice.*
+
+PHP if visibility is omitted — it defaults to `public`.  
+**Best practice**: **Always declare visibility** for clarity.
+
+| Keyword     | Accessible In      |
+|-------------|--------------------|
+| `public`    | Everywhere         |
+| `protected` | Class + subclasses |
+| `private`   | Only this class    |
 
 ```php
+class Person
+{
+    public $first = "Oluwatimilehin";
+    protected $last = "Tawose";
+    private $age = 20;
+}
 
-<?php
+class Pet extends Person
+{
+    private $animal = "dog";
+    private $name = "kai";
+
+    public function owner()
+    {
+        $a = $this->first . " " . $this->last;
+        return $a;
+    }
+
+    public function petName()
+    {
+        return "<br>" . $this->owner() . "'s " . $this->animal . "'s name is " . $this->name;
+    }
+}
+
+$pet = new Pet();
+echo $pet->petName();
+```
+
+> **Only `public` and `protected` are inherited.**  
+> Use `$this` to reference properties/methods in the current object.
+
+
+> *`private` is like your **phone password** — only you can see it.  
+> `protected` is like **family secrets** — only your siblings (subclasses) know.  
+> `public`? That’s your **Instagram bio** — everyone sees it!*
+
+---
+
+<a name="lesson-3"></a>
+# Lesson 3: Constructors & Destructors
+ 
+> *Constructor: is a special method in php that triggers when the object of a class is created the `__construct()` keyword is used for creating a constructor method, also it is used to initialize the object properties.*
+> *Destructors: is a special method used when the object is destroyed or the script is ended, it is always used at the end of a class. the `__destruct()` keyword is used for creating a destructor method, also it is used to do most of the clean up after the object has served it purpose*
+
+```php
 class Person
 {
     public $name;
-    public $eyecolor;
+    public $eyeColor;
     public $age;
 
-
-    public function __construct($name, $eyecolor, $age)
-    {//this is a Constructors method
+    public function __construct($name, $eyeColor, $age)
+    {
         $this->name = $name;
-        $this->eyecolor = $eyecolor;
+        $this->eyeColor = $eyeColor;
         $this->age = $age;
     }
 
     public function setName(string $name = "user")
     {
-        $this->name = $name . "</br>";
+        $this->name = $name . "<br>";
     }
 
     public function getName()
     {
-        return  $this->name;
+        return $this->name;
     }
 
-    public function __destruct() {
-        // this is a destructor method
+    public function __destruct()
+    {
+        echo "Cleanup: Person object destroyed.<br>";
     }
 }
-?>
+
+$person = new Person("Tim", "brown", 20);
+echo $person->getName();
 ```
 
-# Lesson 4:
+> `__destruct()` runs when:  
+> - `unset($obj)`  
+> - Script ends  
+> - Object goes out of scope
 
-## Deleting of an object:
 
-Deleting an object in Object-Oriented Programming (OOP) refers to the process of removing an object from memory and making its resources available for other uses,
-the `unset()` function is used to delete an object or instance of a class
+> *`__construct()` is like **arriving at a party and introducing yourself**.  
+> `__destruct()` is **saying goodbye and turning off the lights when you leave**.*
+
+---
+
+<a name="lesson-4"></a>
+# Lesson 4: Deleting Objects with `unset()`
+
+
+> *Deleting an object removes it from memory... use `unset()`*
 
 ```php
-    $object = new NewClass();
-    unset($object); // line 2 unset the object and makes line 3 invalid or null.
-    echo $object->getNewProperty();
+$object = new NewClass();
+unset($object); // Object destroyed → __destruct() runs
+// echo $object->words; // Fatal error
 ```
 
-# Lesson 5:
+> Alternative: `$object = null;`
 
-## Static Properties and Methods:
 
-Static Properties and Methods are methods and properties that can be accessed without having to create an object or instance of a class we use the `static` keyword to recognize a method or property as static and to access it we use `::`
-to reference a static method or property, and we use the `self` and `::` to access it inside a class
+> *`unset($object)` is like **throwing away your old phone** — it’s gone, and you can’t call it anymore!*
 
-```php
-<?php
- class myClass{
-    public static $pi = 3.14; // this is a static property
+---
 
-    public static function pi($newPi){ //this is a static method
-        self::$pi = $newPi; // how to reference a property inside a class.
-    }
+<a name="lesson-5"></a>
+# Lesson 5: Static Properties & Methods
 
- }
-  myClass::$Pi; // how to reference a static property.
-  myClass::pi(3.5); // how to reference a static method.
-?>
-```
-
-# Lesson 6:
-
-## Automatic Loading of classes and Namespaces:
-
-we use the php `spl_autoload_register()` function to auto load files in php easily without having to include so many files to the files we are working on.
-A namespace in PHP is a way to encapsulate items such as classes, functions, and constants to avoid naming conflicts and organize code, especially in large applications or when using third-party libraries. Think of it as a container that allows you to group related code under a unique name, similar to how directories organize files in a filesystem.
+> *Static properties and methods can be accessed without creating an object... use `::`*
 
 ```php
-<?php
-spl_autoload_register("myAutoLoader"); // to auto load classes with the function name "myAutoLoader";
-function myAutoLoader($className) //autoloader function
+class MyClass
 {
-    $path = "classes/"; // file part
-    $extension = ".php"; // file extension
-    $fullPathName = $path . $className . $extension; //concatenating of the file directory and extensions together.
-    try {
-        if (!file_exists($fullPathName)) { // error handling if file does not exist
-            throw new Exception("invalid class or file Name");
-        }
-        include_once $fullPathName;
-        return $fullPathName;
-    } catch (ErrorException  $th) {
-        echo $th->getMessage();
+    public static $pi = 3.14;
+
+    public static function updatePi($newPi)
+    {
+        self::$pi = $newPi;
     }
 }
+
+echo MyClass::$pi;           // 3.14
+MyClass::updatePi(3.142);
+echo MyClass::$pi;           // 3.142
 ```
 
-# Lesson 7:
+> Use `self::` inside class  
+> Use `static::` for late static binding in inheritance
+  
+> *A **static method** is like the **school bell** — everyone hears it, no need to create a student first!*
 
-## Type Declaration Or Type Hinting:
+---
 
-We use type declaration to make sure that the user passes in the right type of data inside a function or method the list of type we have in PHP are:
+<a name="lesson-6"></a>
+# Lesson 6: Autoloading & Namespaces
+  
+> *Use `spl_autoload_register()` to auto-load classes... Namespaces avoid naming conflicts.*
 
-- int
-- Float
-- string
-- bool
-- array
-- callable
-- object
-- null
-- resource
+```php
+spl_autoload_register(function ($className) {
+    $path = "classes/";
+    $extension = ".php";
+    $fullPath = $path . $className . $extension;
+
+    if (file_exists($fullPath)) {
+        include_once $fullPath;
+    }
+});
+```
+
+### PSR-4 Style
+```php
+spl_autoload_register(function ($class) {
+    $prefix = 'App\\';
+    $base_dir = __DIR__ . '/src/';
+    $len = strlen($prefix);
+
+    if (strncmp($prefix, $class, $len) !== 0) return;
+
+    $relative = substr($class, $len);
+    $file = $base_dir . str_replace('\\', '/', $relative) . '.php';
+
+    if (file_exists($file)) {
+        require $file;
+    }
+});
+```
+
+### Namespace Example
+```php
+// src/Models/User.php
+namespace App\Models;
+
+class User {
+    public function greet() {
+        return "Hello from User!";
+    }
+}
+
+// index.php
+use App\Models\User;
+$user = new User();
+echo $user->greet();
+```
+
+  
+> *Namespaces are like **full names** — `Tunde Adebayo` vs `Tunde Ibrahim`.  
+> Without them, PHP thinks both are the same `Tunde`!*
+
+---
+
+<a name="lesson-7"></a>
+# Lesson 7: Type Declarations (Type Hinting)
+  
+> *Use type declaration to enforce correct data types... enable with `declare(strict_types=1)`*
 
 ```php
 <?php
-    declare(strict_types = 1); // used to enable strict mode in php nd also ensure the type declaration rule is enforced.
-    class myClass{
+declare(strict_types=1);
 
-        public function add(int $x, int $y){
-            return x +y;
-        }
+class Calculator
+{
+    public function add(int $x, int $y): int
+    {
+        return $x + $y;
     }
-    $obj = new myClass();
-    $obj->add(2,4) // the two parameters passed as to be integer data type for the function to work, if not it will throw a type error.
+}
+
+$calc = new Calculator();
+echo $calc->add(2, 4); // 6
+// $calc->add("2", 4); // TypeError!
 ?>
 ```
 
-# Lesson 8:
+> Supported types: `int`, `float`, `string`, `bool`, `array`, `callable`, `object`, `?Type`, etc.
 
-## Scope Resolution Operator:
+> *Type hinting is like a **bouncer at a club** — “Sorry, strings not allowed. Only `int` VIPs!”*
 
-the scope resolution operator which is `::` is an operator that is used to access static methods, properties, and also constants in php
+---
+
+<a name="lesson-8"></a>
+# Lesson 8: Scope Resolution Operator (`::`)
+  
+> *Used to access static methods, properties, and constants... `parent::` in subclasses*
 
 ```php
-<?php
-     class Firstclass{
-    const EXAMPLE = "DOES NOT CHANGE"; // this is a constant
+class FirstClass
+{
+    const EXAMPLE = "DOES NOT CHANGE";
 
-    public static function test(){
-        $testing = "This is a test";
-        return $testing;
+    public static function test()
+    {
+        return "This is a test";
     }
- }
+}
 
- echo Firstclass::EXAMPLE; // echoing the value of the constant using the scope resolution operator
+echo FirstClass::EXAMPLE; // DOES NOT CHANGE
 
-class Secondclass extends Firstclass
+class SecondClass extends FirstClass
 {
     public static $property = "Static Property";
 
-    public static function test2() {
-        echo parent::EXAMPLE; //  I used the parent key word to access the the constant from the parent class in this subclass
+    public static function test2()
+    {
+        echo parent::EXAMPLE;
         echo self::$property;
     }
 }
 
-echo Secondclass::test2();
-
-?>
+SecondClass::test2();
 ```
+ 
+> *`parent::` is like asking your **dad** for his old school motto — even if you’re in a new class!*
 
-> [!NOTE]
-> the "parent" key word is used to access constant inside a subclass like in
-> the example showing above, but the scope resolution operator makes it accessible outside a `class.`
+---
 
-# Lesson 9:
+<a name="lesson-9"></a>
+# Lesson 9: Interfaces
 
-## Interfaces:
-
-Interface is like a blueprint used when creating a class, it can also be seen as a set of rules a class must follow when it is been created and an interface can only contain methods and the methods visibility must be public
+> *Interface is like a blueprint... must use `implements`... only public methods*
 
 ```php
-<?php
-
-// Define an interface
 interface Logger
 {
     public function logMessage(string $message);
     public function logError(string $errorMessage);
 }
 
-// Implement the interface in a class
 class FileLogger implements Logger
 {
     public function logMessage(string $message)
     {
-        // Logic to write message to a file
-        echo "Logging message to file: " . $message . PHP_EOL;
+        echo "Logging message to file: $message" . PHP_EOL;
     }
 
     public function logError(string $errorMessage)
     {
-        // Logic to write error to a file
-        echo "Logging error to file: " . $errorMessage . PHP_EOL;
+        echo "Logging error to file: $errorMessage" . PHP_EOL;
     }
 }
 
-// Another class implementing the same interface
 class DatabaseLogger implements Logger
 {
     public function logMessage(string $message)
     {
-        // Logic to store message in a database
-        echo "Storing message in database: " . $message . PHP_EOL;
+        echo "Storing message in database: $message" . PHP_EOL;
     }
 
     public function logError(string $errorMessage)
     {
-        // Logic to store error in a database
-        echo "Storing error in database: " . $errorMessage . PHP_EOL;
+        echo "Storing error in database: $errorMessage" . PHP_EOL;
     }
 }
 
-// Usage
 $fileLogger = new FileLogger();
-$fileLogger->logMessage("This is a test message.");
-$fileLogger->logError("An error occurred!");
-
-$databaseLogger = new DatabaseLogger();
-$databaseLogger->logMessage("Another message for the database.");
-$databaseLogger->logError("Database error!");
-
+$fileLogger->logMessage("Test message");
 ```
 
-> [!IMPORTANT]
-> You have to use the "**implement**" in your class keyword to be able to
-> use an interface in a class
-> also interfaces cannot contain properties or constants
+> **Rules**:  
+> - Methods must be `public`  
+> - No properties or constants  
+> - Use `implements`
 
-# Lesson 10:
+ 
+> *An **interface** is like a **job description** — “You must `logMessage()` and `logError()`”.  
+> Any class that `implements` it must do the work — no excuses!*
 
-## Abstract Classes:
+---
 
-Abstract classes are classes that can only be used in another class, meaning it can not be instantiated directly unless it extends to another class. Also, it can have abstract methods and any class that contains abstract method must be declared abstract
+<a name="lesson-10"></a>
+# Lesson 10: Abstract Classes
+
+> *Abstract classes cannot be instantiated... must implement abstract methods*
 
 ```php
-<?php
-
- abstract class visa{ // An abstract class
-    public function visaPayment(){
+abstract class Visa
+{
+    public function visaPayment()
+    {
         return "perform a payment";
     }
 
-    abstract public function getPayment(); // an abstract method
+    abstract public function getPayment();
 }
 
-class BuyProduct extends visa{ // Sub class of the abstract class
-    public function getPayment(){
+class BuyProduct extends Visa
+{
+    public function getPayment()
+    {
         return $this->visaPayment();
     }
 }
 
-$buyProduct = new BuyProduct(); // object
-echo $buyProduct->getPayment(); // method
+$buy = new BuyProduct();
+echo $buy->getPayment(); // perform a payment
 ```
 
-> [!NOTE]
-> Abstract method defined in the parent abstract class must be implemented by subclasses  
-> Abstract properties where introduced in php 8.1 and must also be implemented by subclasses
-> Abstract classes can also have regular methods and properties and does not necessarily need to be implemented in subclasses.
+> **Important**:  
+> - Cannot instantiate abstract class  
+> - Subclasses **must** implement abstract methods  
+> - **No abstract properties** (even in PHP 8.1+)
 
-# Lesson 11:
 
-## Anonymous Classes:
+> *An **abstract class** is like a **half-built house** — you can’t live in it (`new AbstractClass()`), but your kids can finish it and move in!*
 
-An anonymous class is a class that is created and used once, it works just like a regular class which can have normal methods and properties and can also implement interfaces just like regular classes, just that it can only be use for a one time purpose. it is created by using the `new` and `class` keyword.
+---
+
+<a name="lesson-11"></a>
+# Lesson 11: Anonymous Classes
+
+> **Original Note (by Oluwatimilehin):**  
+> *Anonymous class is created and used once... uses `new class()`*
 
 ```php
-<?php
-
-$AnonymousClass = new class(){ // an anonymous class
-    public function greet(){
+$AnonymousClass = new class()
+{
+    public function greet()
+    {
         return "Hello world";
     }
 };
 
-echo $AnonymousClass->greet(); //instantiating the method inside the anonymous class.
+echo $AnonymousClass->greet(); // Hello world
 ```
+
+> Use for: one-time objects, testing, mocking.
+
+> **Relatable Joke**:  
+> *An **anonymous class** is like a **one-day substitute teacher** — does the job, no name tag, gone tomorrow!*
+
+---
+
+<a name="lesson-12"></a>
+# Lesson 12: Model-View-Controller (MVC)
+
+
+> *MVC separates logic: Model (data), View (presentation), Controller (connection)*
+
+### Folder Structure
+```bash
+my-app/
+├── index.php
+├── controllers/
+│   └── user.php
+├── models/
+│   └── user.php
+└── views/
+    └── user.php
+```
+
+### Simple Flow
+```
+User → Controller → Model ↔ Database
+               ↓
+             View → HTML
+```
+  
+> *MVC is like **cooking Jollof**:  
+> - **Model** = ingredients in the pot (data)  
+> - **View** = the plate and garnish (presentation)  
+> - **Controller** = the chef who connects pot to plate!*
+
+---
+
+## Next Lessons (Planned)
+1. **Traits** – Reusable methods  
+2. **Dependency Injection** – Cleaner, testable code  
+3. **Composer** – Autoloading + packages  
+4. **PSR-12** – Coding standards  
+5. **Design Patterns** – Factory, Singleton, Repository
+
+---
+## Projects done with oop
+[OOP Projects](https://github.com/timilehin-code/php_oop/tree/projects)
+
+## Author
+**Oluwatimilehin Tawose**  
+*PHP Developer | Learning OOP*
+
+---
+
+> **"Code is like humor. When you have to explain it, it’s bad."** – Cory House  
+
+---
+
+## Contributing
+
+We'd love your help to make this guide even better!
+
+Please see **[CONTRIBUTING.md](./CONTRIBUTING.md)** for details on:
+- How to submit pull requests
+- Coding style
+- Testing
+- Code of conduct
+
+Every contribution counts – from a typo fix to a brand-new lesson!
+
+<a href="./CONTRIBUTING.md">
+  <img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg" alt="Contributions Welcome">
+</a>
+
