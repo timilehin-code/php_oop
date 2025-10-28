@@ -19,7 +19,7 @@ $userName = trim($_POST['uname'] ?? '');
 $password = $_POST['pwd'] ?? '';
 $userEmail = trim($_POST['mail'] ?? '');
 
-$auth = new authentication($conn, $userName, $password, $userEmail);
+$auth = new authentication($conn,  $password, $userEmail,$userName,);
 $auth->getCheckEmail();
 
 if ($auth->getCheckEmail()) {

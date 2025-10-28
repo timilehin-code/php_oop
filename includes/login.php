@@ -5,10 +5,10 @@ include 'conn.php';
 if (isset($_POST['login'])) {
     $userEmail = trim($_POST['mail'] ?? '');
     $password = $_POST['pwd'] ?? '';
-    $userName = "null";
+    $userName = null;
 
     try {
-        $auth = new authentication($conn, $userName, $password, $userEmail);
+        $auth = new authentication($conn,  $password, $userEmail, $userName);
         $result = $auth->getUser();
         if ($result) {
             header("location:../welcome.php");

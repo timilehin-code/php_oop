@@ -9,7 +9,7 @@ class Authentication
 
     private $conn;
 
-    public function __construct($conn, string $userName = "null",  string $password,  string $userEmail)
+    public function __construct($conn,  string $password,  string $userEmail, $userName = null)
     {
         if (empty($userName) || strlen($userName) > 50) {
             throw new InvalidArgumentException("Invalid username");
