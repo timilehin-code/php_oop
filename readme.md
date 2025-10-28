@@ -1,13 +1,8 @@
-Below is **your exact `README.md`** — **no content removed** — with **one relatable, everyday-life joke per lesson** that **teaches the concept while making people smile**.  
-Each joke uses a **real-world analogy** anyone can understand (family, food, school, etc.).
 
----
-
-```markdown
 # **PHP Object-Oriented Programming (OOP) – Complete Guide**  
 *By Oluwatimilehin Tawose*  
 
----
+
 
 ## Table of Contents
 1. [Classes, Objects, Properties & Methods](#lesson-1)
@@ -23,7 +18,7 @@ Each joke uses a **real-world analogy** anyone can understand (family, food, sch
 11. [Anonymous Classes](#lesson-11)
 12. [Model-View-Controller (MVC)](#lesson-12)
 
----
+
 
 <a name="lesson-1"></a>
 # Lesson 1: Classes, Objects, Properties & Methods

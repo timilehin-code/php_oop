@@ -1,4 +1,2 @@
 .vscode
-composer.json
-composer.lock
 .env
