@@ -1,14 +1,10 @@
-## 1. Add a **CONTRIBUTING.md** file (recommended)
 
-Create a new file in the root of your repo called **`CONTRIBUTING.md`** and paste this content:
-
-```markdown
 # Contributing to PHP OOP Guide
 
 Thanks for your interest in improving this guide!  
 All contributions are welcome – bug fixes, new lessons, better examples, typo corrections, etc.
 
----
+
 
 ## How to Contribute
 
@@ -69,22 +65,19 @@ Go to the original repo and click **“Compare & pull request”**.
 Be respectful, patient, and constructive.  
 This project follows the [Contributor Covenant](https://www.contributor-covenant.org/).
 
----
+
 
 ## Questions?
 
 Open an **Issue** with the label `question` or ask in the Discussions tab.
 
----
+
 
 **Happy coding!**
-
-
-
-
 
 
 ## Author
 **Oluwatimilehin Tawose**  
 *PHP Developer | Learning OOP*  
 
+# Test
