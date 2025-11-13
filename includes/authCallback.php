@@ -59,3 +59,5 @@ if (isset($_GET['code'])) {
         echo $th->getMessage();
     }
 }
+
+// https://x.com/HaytersTV/status/1988304064791060575?s=20
